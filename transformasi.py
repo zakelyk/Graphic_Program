@@ -1,73 +1,88 @@
 import matplotlib.pyplot as plt
 
-def translate_object(coordinates, tx, ty):
-    transformed_coordinates = []
-    for x, y in coordinates:
-        transformed_x = x + tx
-        transformed_y = y + ty
-        transformed_coordinates.append((transformed_x, transformed_y))
-    return transformed_coordinates
+def translate_from_keyboard():
+    tx = int(input("Masukkan nilai translasi tx: "))
+    ty = int(input("Masukkan nilai translasi ty: "))
+    return tx, ty
 
-def create_object_from_keyboard():
-    num_points = int(input("Masukkan jumlah titik pada objek: "))
-    coordinates = []
-    for i in range(num_points):
-        x = int(input("Masukkan koordinat x titik {}: ".format(i+1)))
-        y = int(input("Masukkan koordinat y titik {}: ".format(i+1)))
-        coordinates.append((x, y))
-    return coordinates
-
-def create_object_from_mouse():
+def translate_from_mouse():
     fig, ax = plt.subplots()
-    ax.set_xlim([0, 10])
-    ax.set_ylim([0, 10])
-    coords = plt.ginput(-1)
+    coords = plt.ginput(1)
     plt.close(fig)
-    coordinates = [(int(coord[0]), int(coord[1])) for coord in coords]
-    return coordinates
+    tx = int(coords[0][0])
+    ty = int(coords[0][1])
+    return tx, ty
+
+def translate_from_object(objects):
+    print("Daftar objek yang tersedia:")
+    for i, obj in enumerate(objects):
+        print("{}. Objek: {}".format(i+1, obj))
+
+    choice = int(input("Pilih objek yang akan ditranslasikan (1-{}): ".format(len(objects))))
+    if choice < 1 or choice > len(objects):
+        print("Pilihan tidak valid.")
+        return None
+
+    obj = objects[choice-1]
+    tx = int(input("Masukkan nilai translasi tx: "))
+    ty = int(input("Masukkan nilai translasi ty: "))
+    return [(x+tx, y+ty) for x, y in obj]
 
 def print_object_coordinates(coordinates):
     for i, coord in enumerate(coordinates):
-        x, y = coord
-        print("Koordinat titik {}: ({}, {})".format(i+1, x, y))
+        print("Koordinat objek {}: {}".format(i+1, coord))
 
-def plot_object(coordinates):
-    x_coords, y_coords = zip(*coordinates)
-    plt.plot(x_coords, y_coords, marker='o')
+def plot_objects(objects):
+    fig, ax = plt.subplots()
+    for obj in objects:
+        x_coords, y_coords = zip(*obj)
+        plt.plot(x_coords, y_coords, marker='o')
     plt.xlabel('X')
     plt.ylabel('Y')
-    plt.title('Objek')
+    plt.title('Translasi Objek')
     plt.grid(True, linestyle='--', linewidth=0.5)
     plt.show()
 
-def transform_object():
-    print("=== Transformasi Objek ===")
-    print("1. Input dari keyboard")
-    print("2. Input dari mouse")
+def perform_translation(objects):
+    # objects = []
 
-    choice = int(input("Pilih metode input (1-2): "))
-    if choice == 1:
-        coordinates = create_object_from_keyboard()
-    elif choice == 2:
-        coordinates = create_object_from_mouse()
-    else:
-        print("Pilihan tidak valid.")
-        return
+    while True:
+        print("=== Transformasi ===")
+        print("1. Input dari keyboard")
+        print("2. Input dari mouse")
+        print("3. Input dari objek")
+        print("4. Selesai")
 
-    print("=== Koordinat Objek ===")
-    print_object_coordinates(coordinates)
+        choice = int(input("Pilih metode input (1-4): "))
 
-    num_transformations = int(input("Masukkan jumlah transformasi (1-3): "))
+        if choice == 1:
+            tx, ty = translate_from_keyboard()
+            if objects:
+                objects.append([(x+tx, y+ty) for x, y in objects[-1]])
+            else:
+                print("Belum ada objek yang ditambahkan.")
+        elif choice == 2:
+            tx, ty = translate_from_mouse()
+            if objects:
+                objects.append([(x+tx, y+ty) for x, y in objects[-1]])
+            else:
+                print("Belum ada objek yang ditambahkan.")
+        elif choice == 3:
+            if not objects:
+                print("Belum ada objek yang ditambahkan.")
+                continue
+            translated_obj = translate_from_object(objects)
+            if translated_obj:
+                objects.append(translated_obj)
+        elif choice == 4:
+            break
+        else:
+            print("Pilihan tidak valid.")
+            continue
 
-    for i in range(num_transformations):
-        print("=== Translasi ke-{} ===".format(i+1))
-        tx = int(input("Masukkan translasi pada sumbu x (tx): "))
-        ty = int(input("Masukkan translasi pada sumbu y (ty): "))
-
-        transformed_coordinates = translate_object(coordinates, tx, ty)
-
-        print("=== Koordinat Objek Setelah Translasi ke-{} ===".format(i+1))
-        print_object_coordinates(transformed_coordinates)
+    if objects:
+        print("=== Koordinat Objek ===")
+        print_object_coordinates(objects[-1])
 
         print("1. Output berupa teks")
         print("2. Output berupa grafik")
@@ -76,16 +91,15 @@ def transform_object():
         if output_choice == 1:
             # Output berupa teks
             print("=== Output Teks ===")
-            print_object_coordinates(transformed_coordinates)
+            print_object_coordinates(objects[-1])
         elif output_choice == 2:
             # Output berupa grafik
             print("=== Output Grafik ===")
-            plot_object(transformed_coordinates)
+            plot_objects(objects)
         else:
             print("Pilihan tidak valid.")
-            return
+    else:
+        print("Tidak ada objek yang ditambahkan.")
 
-        coordinates = transformed_coordinates
-
-if __name__ == "__main__":
-    transform_object()
+# Contoh pemanggilan fungsi perform_translation()
+# perform_translation()
