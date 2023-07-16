@@ -24,9 +24,9 @@ def main():
         elif choice == 3:
             transform_object()
         elif choice == 4:
-            print("Fitur Belum tersedia")
+            print("\n!!!Fitur Belum tersedia!!!\n")
         elif choice == 5:
-            print("Fitur belum tersedia")
+            print("\n!!!Fitur belum tersedia!!!\n")
         elif choice == 6:
             print("Terima kasih telah menggunakan program ini.")
         else:
