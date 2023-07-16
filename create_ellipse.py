@@ -80,10 +80,12 @@ def create_ellipse():
         # Output berupa teks
         print("=== Output Teks ===")
         print_ellipse_coordinates(coordinates)
+        return coordinates
     elif output_choice == 2:
         # Output berupa grafik
         print("=== Output Grafik ===")
         plot_ellipse(coordinates)
+        return coordinates
     else:
         print("Pilihan tidak valid.")
         return
