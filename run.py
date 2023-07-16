@@ -21,17 +21,12 @@ def main():
 
         if choice == 1:
             coordinates = create_line()
-            print(coordinates)
             objects.append(coordinates)
-            # print(coordinates)
         elif choice == 2:
             coordinates = create_ellipse()
-            print(coordinates)
             objects.append(coordinates)
         elif choice == 3:
-            print(objects)
             perform_translation(objects)
-            # print("\n!!!Fitur Belum tersedia!!!\n")
         elif choice == 4:
             print("\n!!!Fitur Belum tersedia!!!\n")
         elif choice == 5:
