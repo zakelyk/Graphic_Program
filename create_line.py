@@ -5,7 +5,7 @@ def create_line_from_keyboard():
     y1 = int(input("Masukkan koordinat y1: "))
     x2 = int(input("Masukkan koordinat x2: "))
     y2 = int(input("Masukkan koordinat y2: "))
-    return x1, y1, x2, y2
+    return [(x1, y1), (x2, y2)]
 
 def create_line_from_mouse():
     fig, ax = plt.subplots()
@@ -15,15 +15,15 @@ def create_line_from_mouse():
     plt.close(fig)
     x1, y1 = int(coords[0][0]), int(coords[0][1])
     x2, y2 = int(coords[1][0]), int(coords[1][1])
-    return x1, y1, x2, y2
+    return [(x1, y1), (x2, y2)]
 
 def print_line_coordinates(coordinates):
-    x1, y1, x2, y2 = coordinates
+    [(x1, y1), (x2, y2)] = coordinates
     print("Koordinat titik awal: ({}, {})".format(x1, y1))
     print("Koordinat titik akhir: ({}, {})".format(x2, y2))
 
 def draw_line(coordinates):
-    x1, y1, x2, y2 = coordinates
+    [(x1, y1), (x2, y2)] = coordinates
 
     dx = abs(x2 - x1)
     dy = abs(y2 - y1)
