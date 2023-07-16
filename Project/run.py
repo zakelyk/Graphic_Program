@@ -1,3 +1,6 @@
+from create_ellipse import create_ellipse
+from create_line import create_line
+from transformasi import transform_object
 
 def main():
     choice = 0
@@ -14,11 +17,11 @@ def main():
         choice = int(input("Pilih fitur (1-6): "))
 
         if choice == 1:
-            import create_line
+            create_line()
         elif choice == 2:
-            import create_ellipse
+            create_ellipse()
         elif choice == 3:
-            import transformasi
+            transform_object()
         elif choice == 4:
             print("Fitur Belum tersedia")
         elif choice == 5:

@@ -8,8 +8,8 @@ def create_ellipse_from_keyboard():
 
 def create_ellipse_from_mouse():
     fig, ax = plt.subplots()
-    ax.set_xlim([0, 10])  # Set x-axis limits to encompass a larger area
-    ax.set_ylim([0, 10])  # Set y-axis limits to encompass a larger area
+    ax.set_xlim([0, 10])
+    ax.set_ylim([0, 10])
     coords = plt.ginput(2)
     plt.close(fig)
     xc = int(coords[0][0])
@@ -88,4 +88,5 @@ def create_ellipse():
         print("Pilihan tidak valid.")
         return
 
-create_ellipse()
+if __name__ == "__main__":
+    create_ellipse()

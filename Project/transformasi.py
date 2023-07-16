@@ -19,6 +19,8 @@ def create_object_from_keyboard():
 
 def create_object_from_mouse():
     fig, ax = plt.subplots()
+    ax.set_xlim([0, 10])
+    ax.set_ylim([0, 10])
     coords = plt.ginput(-1)
     plt.close(fig)
     coordinates = [(int(coord[0]), int(coord[1])) for coord in coords]
@@ -85,5 +87,5 @@ def transform_object():
 
         coordinates = transformed_coordinates
 
-# Contoh pemanggilan fungsi transform_object()
-transform_object()
+if __name__ == "__main__":
+    transform_object()
