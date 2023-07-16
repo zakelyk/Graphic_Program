@@ -1,10 +1,11 @@
 import check_matplotlib
 from create_ellipse import create_ellipse
 from create_line import create_line
-from transformasi import transform_object
+from transformasi import perform_translation
 
+objects = []
 def main():
-    objects = []
+
     choice = 0
 
     while choice != 6:
@@ -20,13 +21,17 @@ def main():
 
         if choice == 1:
             coordinates = create_line()
+            print(coordinates)
             objects.append(coordinates)
             # print(coordinates)
         elif choice == 2:
             coordinates = create_ellipse()
+            print(coordinates)
             objects.append(coordinates)
         elif choice == 3:
-            transform_object()
+            print(objects)
+            perform_translation(objects)
+            # print("\n!!!Fitur Belum tersedia!!!\n")
         elif choice == 4:
             print("\n!!!Fitur Belum tersedia!!!\n")
         elif choice == 5:
