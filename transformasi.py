@@ -44,41 +44,38 @@ def plot_objects(objects):
     plt.show()
 
 def perform_translation(objects):
-    # objects = []
 
-    while True:
-        print("=== Transformasi ===")
-        print("1. Input dari keyboard")
-        print("2. Input dari mouse")
-        print("3. Input dari objek")
-        print("4. Selesai")
+    print("=== Transformasi ===")
+    print("1. Input dari keyboard")
+    print("2. Input dari mouse")
+    print("3. Input dari objek")
 
-        choice = int(input("Pilih metode input (1-4): "))
+    choice = int(input("Pilih metode input (1-4): "))
 
-        if choice == 1:
-            tx, ty = translate_from_keyboard()
-            if objects:
-                objects.append([(x+tx, y+ty) for x, y in objects[-1]])
-            else:
-                print("Belum ada objek yang ditambahkan.")
-        elif choice == 2:
-            tx, ty = translate_from_mouse()
-            if objects:
-                objects.append([(x+tx, y+ty) for x, y in objects[-1]])
-            else:
-                print("Belum ada objek yang ditambahkan.")
-        elif choice == 3:
-            if not objects:
-                print("Belum ada objek yang ditambahkan.")
-                continue
-            translated_obj = translate_from_object(objects)
-            if translated_obj:
-                objects.append(translated_obj)
-        elif choice == 4:
-            break
+    if choice == 1:
+        tx, ty = translate_from_keyboard()
+        if objects:
+            objects.append([(x+tx, y+ty) for x, y in objects[-1]])
         else:
-            print("Pilihan tidak valid.")
-            continue
+            print("Belum ada objek yang ditambahkan.")
+            return
+    elif choice == 2:
+        tx, ty = translate_from_mouse()
+        if objects:
+            objects.append([(x+tx, y+ty) for x, y in objects[-1]])
+        else:
+            print("Belum ada objek yang ditambahkan.")
+            return
+    elif choice == 3:
+        if not objects:
+            print("Belum ada objek yang ditambahkan.")
+            return
+        translated_obj = translate_from_object(objects)
+        if translated_obj:
+            objects.append(translated_obj)
+    else:
+        print("Pilihan tidak valid.")
+        return
 
     if objects:
         print("=== Koordinat Objek ===")
