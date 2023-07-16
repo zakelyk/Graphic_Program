@@ -3,9 +3,8 @@ import matplotlib.pyplot as plt
 def create_ellipse_from_keyboard():
     xc = int(input("Masukkan koordinat x pusat ellipse: "))
     yc = int(input("Masukkan koordinat y pusat ellipse: "))
-    a = int(input("Masukkan panjang sumbu horizontal (a): "))
-    b = int(input("Masukkan panjang sumbu vertikal (b): "))
-    return xc, yc, a, b
+    r = int(input("Masukkan jari-jari ellipse: "))
+    return xc, yc, r
 
 def create_ellipse_from_mouse():
     fig, ax = plt.subplots()
@@ -15,27 +14,25 @@ def create_ellipse_from_mouse():
     plt.close(fig)
     xc = int(coords[0][0])
     yc = int(coords[0][1])
-    a = int(coords[1][0] - coords[0][0])
-    b = int(coords[1][1] - coords[0][1])
-    return xc, yc, a, b
+    r = int(coords[1][0] - coords[0][0])
+    return xc, yc, r
 
 def print_ellipse_coordinates(coordinates):
-    xc, yc, a, b = coordinates
+    xc, yc, r = coordinates
     print("Koordinat pusat ellipse: ({}, {})".format(xc, yc))
-    print("Panjang sumbu horizontal (a):", a)
-    print("Panjang sumbu vertikal (b):", b)
+    print("Jari-jari ellipse:", r)
 
 def plot_ellipse(coordinates):
-    xc, yc, a, b = coordinates
+    xc, yc, r = coordinates
 
     x = 0
-    y = b
+    y = r
 
-    p = round(b**2 - a**2 * b + (a**2) / 4)
+    p = round((5/4) - r)
 
     points = []
 
-    while 2 * (b**2) * x < 2 * (a**2) * y:
+    while x <= y:
         points.append((xc + x, yc + y))
         points.append((xc - x, yc + y))
         points.append((xc + x, yc - y))
@@ -43,27 +40,11 @@ def plot_ellipse(coordinates):
 
         if p < 0:
             x += 1
-            p += 2 * (b**2) * x + (b**2)
+            p += 2 * x + 1
         else:
             x += 1
             y -= 1
-            p += 2 * (b**2) * x - 2 * (a**2) * y + (b**2)
-
-    p = round(b**2 * (x + 0.5)**2 + a**2 * (y - 1)**2 - a**2 * b**2)
-
-    while y >= 0:
-        points.append((xc + x, yc + y))
-        points.append((xc - x, yc + y))
-        points.append((xc + x, yc - y))
-        points.append((xc - x, yc - y))
-
-        if p > 0:
-            y -= 1
-            p += -2 * (a**2) * y + (a**2)
-        else:
-            x += 1
-            y -= 1
-            p += 2 * (b**2) * x - 2 * (a**2) * y + (a**2)
+            p += 2 * (x - y) + 1
 
     x_coords, y_coords = zip(*points)
 
@@ -107,5 +88,4 @@ def create_ellipse():
         print("Pilihan tidak valid.")
         return
 
-# Contoh pemanggilan fungsi create_ellipse()
 create_ellipse()
