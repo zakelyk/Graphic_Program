@@ -1,7 +1,7 @@
 def check_matplotlib():
     while True:
         try:
-            import matplotlib
+            import matplotlib_check
             return True
         except ImportError:
             print("Modul Matplotlib tidak ditemukan.")

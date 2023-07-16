@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt
+import matplotlib_check.pyplot as plt
 
 def create_line_from_keyboard():
     x1 = int(input("Masukkan koordinat x1: "))

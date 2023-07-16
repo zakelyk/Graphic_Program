@@ -1,8 +1,9 @@
-import check_matplotlib
+import matplotlib_check
 from create_ellipse import create_ellipse
 from create_line import create_line
 from transformasi import perform_translation
 from windowing import windowing
+from clipping import clip
 
 objects = []
 def main():
@@ -32,7 +33,8 @@ def main():
             # print("\n!!!Fitur Belum tersedia!!!\n")
             windowing(objects)
         elif choice == 5:
-            print("\n!!!Fitur belum tersedia!!!\n")
+            # print("\n!!!Fitur belum tersedia!!!\n")
+            clip(objects)
         elif choice == 6:
             print("Terima kasih telah menggunakan program ini.")
         else:
