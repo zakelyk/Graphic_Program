@@ -1,3 +1,4 @@
+import check_matplotlib
 from create_ellipse import create_ellipse
 from create_line import create_line
 from transformasi import transform_object
