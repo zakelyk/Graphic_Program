@@ -4,6 +4,7 @@ from create_line import create_line
 from transformasi import transform_object
 
 def main():
+    objects = []
     choice = 0
 
     while choice != 6:
@@ -18,9 +19,12 @@ def main():
         choice = int(input("Pilih fitur (1-6): "))
 
         if choice == 1:
-            create_line()
+            coordinates = create_line()
+            objects.append(coordinates)
+            # print(coordinates)
         elif choice == 2:
-            create_ellipse()
+            coordinates = create_ellipse()
+            objects.append(coordinates)
         elif choice == 3:
             transform_object()
         elif choice == 4:
