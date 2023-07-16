@@ -77,10 +77,12 @@ def create_line():
         # Output berupa teks
         print("=== Output Teks ===")
         print_line_coordinates(coordinates)
+        return coordinates
     elif output_choice == 2:
         # Output berupa gambar
         print("=== Output Gambar ===")
         draw_line(coordinates)
+        return coordinates
     else:
         print("Pilihan tidak valid.")
         return
