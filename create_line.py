@@ -74,12 +74,10 @@ def create_line():
 
     output_choice = int(input("Pilih metode output (1-2): "))
     if output_choice == 1:
-        # Output berupa teks
         print("=== Output Teks ===")
         print_line_coordinates(coordinates)
         return coordinates
     elif output_choice == 2:
-        # Output berupa gambar
         print("=== Output Gambar ===")
         draw_line(coordinates)
         return coordinates
@@ -87,5 +85,4 @@ def create_line():
         print("Pilihan tidak valid.")
         return
 
-if __name__ == "__main__":
-    create_line()
+

@@ -77,12 +77,10 @@ def create_ellipse():
 
     output_choice = int(input("Pilih metode output (1-2): "))
     if output_choice == 1:
-        # Output berupa teks
         print("=== Output Teks ===")
         print_ellipse_coordinates(coordinates)
         return coordinates
     elif output_choice == 2:
-        # Output berupa grafik
         print("=== Output Grafik ===")
         plot_ellipse(coordinates)
         return coordinates
@@ -90,5 +88,3 @@ def create_ellipse():
         print("Pilihan tidak valid.")
         return
 
-if __name__ == "__main__":
-    create_ellipse()

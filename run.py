@@ -2,6 +2,7 @@ import check_matplotlib
 from create_ellipse import create_ellipse
 from create_line import create_line
 from transformasi import perform_translation
+from windowing import perform_windowing
 
 objects = []
 def main():
@@ -29,12 +30,11 @@ def main():
             perform_translation(objects)
         elif choice == 4:
             print("\n!!!Fitur Belum tersedia!!!\n")
+            # perform_windowing(objects)
         elif choice == 5:
             print("\n!!!Fitur belum tersedia!!!\n")
         elif choice == 6:
             print("Terima kasih telah menggunakan program ini.")
         else:
             print("Pilihan tidak tersedia.")
-
-# Jalankan program utama
 main()

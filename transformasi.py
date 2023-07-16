@@ -86,11 +86,9 @@ def perform_translation(objects):
 
         output_choice = int(input("Pilih metode output (1-2): "))
         if output_choice == 1:
-            # Output berupa teks
             print("=== Output Teks ===")
             print_object_coordinates(objects[-1])
         elif output_choice == 2:
-            # Output berupa grafik
             print("=== Output Grafik ===")
             plot_objects(objects)
         else:
@@ -98,5 +96,3 @@ def perform_translation(objects):
     else:
         print("Tidak ada objek yang ditambahkan.")
 
-# Contoh pemanggilan fungsi perform_translation()
-# perform_translation()
