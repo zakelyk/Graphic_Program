@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import create_line as ln
 
 def translate_from_keyboard():
     tx = int(input("Masukkan nilai translasi tx: "))
@@ -31,8 +32,9 @@ def translate_from_object(objects):
     return [(x+tx, y+ty) for x, y in obj]
 
 def print_object_coordinates(coordinates):
-    for i, coord in enumerate(coordinates):
-        print("Koordinat objek {}: {}".format(i+1, coord))
+    x1, y1, x2, y2 = coordinates
+    print("Titik A: {}, {}".format(x1, y1))
+    print("Titik B: {}, {}".format(x2, y2))
 
 def plot_objects(objects):
     # fig, ax = plt.subplots()
@@ -55,19 +57,13 @@ def perform_translation(objects):
     choice = int(input("Pilih metode input (1-4): "))
 
     if choice == 1:
+        [(x1, y1), (x2, y2)] = ln.create_line_from_keyboard()
         tx, ty = translate_from_keyboard()
-        if objects:
-            objects.append([(x+tx, y+ty) for x, y in objects[-1]])
-        else:
-            print("Belum ada objek yang ditambahkan.")
-            return
+        objects = [x1+tx, y1+ty, x2+tx, y2+ty]
     elif choice == 2:
+        [(x1, y1), (x2, y2)] = ln.create_line_from_mouse()
         tx, ty = translate_from_mouse()
-        if objects:
-            objects.append([(x+tx, y+ty) for x, y in objects[-1]])
-        else:
-            print("Belum ada objek yang ditambahkan.")
-            return
+        objects = [x1+tx, y1+ty, x2+tx, y2+ty]
     elif choice == 3:
         if not objects:
             print("Belum ada objek yang ditambahkan.")
@@ -81,7 +77,7 @@ def perform_translation(objects):
 
     if objects:
         print("=== Koordinat Objek ===")
-        print_object_coordinates(objects[-1])
+        print_object_coordinates(objects)
 
         print("1. Output berupa teks")
         print("2. Output berupa grafik")
@@ -89,7 +85,7 @@ def perform_translation(objects):
         output_choice = int(input("Pilih metode output (1-2): "))
         if output_choice == 1:
             print("=== Output Teks ===")
-            print_object_coordinates(objects[-1])
+            print_object_coordinates(objects)
         elif output_choice == 2:
             print("=== Output Grafik ===")
             plot_objects(objects)
