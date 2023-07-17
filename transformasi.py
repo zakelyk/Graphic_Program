@@ -50,7 +50,7 @@ def perform_translation(objects):
     print("=== Transformasi ===")
     print("1. Input dari keyboard")
     print("2. Input dari mouse")
-    print("3. Input dari objek")
+    print("3. Input dari objek yang sudah ada")
 
     choice = int(input("Pilih metode input (1-4): "))
 
