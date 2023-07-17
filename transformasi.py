@@ -6,16 +6,6 @@ def translate_from_keyboard():
     ty = int(input("Masukkan nilai translasi ty: "))
     return tx, ty
 
-def translate_from_mouse():
-    fig, ax = plt.subplots()
-    ax.set_xlim([0, 10])
-    ax.set_ylim([0, 10])
-    coords = plt.ginput(1)
-    plt.close(fig)
-    tx = int(coords[0][0])
-    ty = int(coords[0][1])
-    return tx, ty
-
 def translate_from_object(objects):
     print("Daftar objek yang tersedia:")
     for i, obj in enumerate(objects):
@@ -29,7 +19,7 @@ def translate_from_object(objects):
     obj = objects[choice-1]
     tx = int(input("Masukkan nilai translasi tx: "))
     ty = int(input("Masukkan nilai translasi ty: "))
-    return [(x+tx, y+ty) for x, y in obj]
+    return obj, tx, ty
 
 def print_object_coordinates(coordinates):
     x1, y1, x2, y2 = coordinates
@@ -62,15 +52,17 @@ def perform_translation(objects):
         objects = [x1+tx, y1+ty, x2+tx, y2+ty]
     elif choice == 2:
         [(x1, y1), (x2, y2)] = ln.create_line_from_mouse()
-        tx, ty = translate_from_mouse()
+        tx, ty = translate_from_keyboard()
         objects = [x1+tx, y1+ty, x2+tx, y2+ty]
     elif choice == 3:
         if not objects:
             print("Belum ada objek yang ditambahkan.")
             return
-        translated_obj = translate_from_object(objects)
-        if translated_obj:
-            objects.append(translated_obj)
+        obj, tx, ty = translate_from_object(objects)
+        # if translated_obj:
+        #     objects.append(translated_obj)
+        [(x1, y1), (x2, y2)] = obj
+        objects = [x1+tx, y1+ty, x2+tx, y2+ty]
     else:
         print("Pilihan tidak valid.")
         return
