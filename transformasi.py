@@ -1,4 +1,4 @@
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 def translate_from_keyboard():
     tx = int(input("Masukkan nilai translasi tx: "))

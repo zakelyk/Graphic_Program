@@ -1,4 +1,4 @@
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 def create_ellipse_from_keyboard():
     xc = int(input("Masukkan koordinat x pusat ellipse: "))

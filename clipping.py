@@ -1,4 +1,4 @@
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 def print_clipped_objects(objects):
     print("Daftar objek hasil clipping:")

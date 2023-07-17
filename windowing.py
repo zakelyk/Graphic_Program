@@ -1,4 +1,4 @@
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 def print_selected_objects(objects):
     print("Daftar objek yang terpilih:")
