@@ -7,6 +7,8 @@ def translate_from_keyboard():
 
 def translate_from_mouse():
     fig, ax = plt.subplots()
+    ax.set_xlim([0, 10])
+    ax.set_ylim([0, 10])
     coords = plt.ginput(1)
     plt.close(fig)
     tx = int(coords[0][0])
@@ -16,7 +18,7 @@ def translate_from_mouse():
 def translate_from_object(objects):
     print("Daftar objek yang tersedia:")
     for i, obj in enumerate(objects):
-        print("{}. Objek: {}".format(i+1, obj))
+        print("{}. Line: {}".format(i+1, obj))
 
     choice = int(input("Pilih objek yang akan ditranslasikan (1-{}): ".format(len(objects))))
     if choice < 1 or choice > len(objects):
