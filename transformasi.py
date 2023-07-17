@@ -59,8 +59,6 @@ def perform_translation(objects):
             print("Belum ada objek yang ditambahkan.")
             return
         obj, tx, ty = translate_from_object(objects)
-        # if translated_obj:
-        #     objects.append(translated_obj)
         [(x1, y1), (x2, y2)] = obj
         objects = [x1+tx, y1+ty, x2+tx, y2+ty]
     else:
