@@ -27,15 +27,16 @@ def print_object_coordinates(coordinates):
     print("Titik B: {}, {}".format(x2, y2))
 
 def plot_objects(objects):
-    # fig, ax = plt.subplots()
-    for obj in objects:
-        x_coords, y_coords = zip(*obj)
-        plt.plot(x_coords, y_coords, marker='o')
+    x_coords = objects[::2]  # Get the x-coordinates
+    y_coords = objects[1::2]  # Get the y-coordinates
+
+    plt.plot(x_coords, y_coords, marker='o')
     plt.xlabel('X')
     plt.ylabel('Y')
     plt.title('Translasi Objek')
     plt.grid(True, linestyle='--', linewidth=0.5)
     plt.show()
+
 
 def perform_translation(objects):
 
