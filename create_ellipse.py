@@ -35,11 +35,10 @@ def print_ellipse_coordinates(coordinates):
         points.append((xc + x, yc - y))
         points.append((xc - x, yc - y))
 
-        print("Line : ("+xc+", "+yc+"), ("+(xc + x)+", "+(yc + y)+")")
-        print("Line : ("+xc+", "+yc+"), ("+(xc - x)+", "+(yc + y)+")")
-        print("Line : ("+xc+", "+yc+"), ("+(xc + x)+", "+(yc - y)+")")
-        print("Line : ("+xc+", "+yc+"), ("+(xc - x)+", "+(yc - y)+")")
-
+        print("Line :", xc + x, yc + y)
+        print("Line :", xc - x, yc + y)
+        print("Line :", xc + x, yc - y)
+        print("Line :", xc - x, yc - y)
 
         if p < 0:
             x += 1
