@@ -22,9 +22,6 @@ def print_ellipse_coordinates(coordinates):
     print("Koordinat pusat ellipse: ({}, {})".format(xc, yc))
     print("Jari-jari ellipse:", r)
 
-def plot_ellipse(coordinates):
-    [(xc, yc), (r,r)] = coordinates
-
     x = 0
     y = r
 
@@ -38,6 +35,11 @@ def plot_ellipse(coordinates):
         points.append((xc + x, yc - y))
         points.append((xc - x, yc - y))
 
+        print("Line :", xc + x, yc + y)
+        print("Line :", xc - x, yc + y)
+        print("Line :", xc + x, yc - y)
+        print("Line :", xc - x, yc - y)
+
         if p < 0:
             x += 1
             p += 2 * x + 1
@@ -46,13 +48,22 @@ def plot_ellipse(coordinates):
             y -= 1
             p += 2 * (x - y) + 1
 
-    x_coords, y_coords = zip(*points)
+def plot_ellipse(coordinates):
+    x_center = coordinates[0][0]
+    y_center = coordinates[0][1]
+    width = coordinates[1][0]
+    height = coordinates[1][1]
 
-    plt.plot(x_coords, y_coords, marker='o')
+    ellipse = plt.Circle((x_center, y_center), width/2)  # Perhatikan perubahan di sini
+    fig, ax = plt.subplots()
+    ax.add_artist(ellipse)
+    ax.set_aspect('equal')
     plt.xlabel('X')
     plt.ylabel('Y')
-    plt.title('Ellipse')
-    plt.grid(True, linestyle='--', linewidth=0.5)
+    plt.title('Ellips')
+    plt.xlim(x_center - width/2 - 1, x_center + width/2 + 1)
+    plt.ylim(y_center - height/2 - 1, y_center + height/2 + 1)
+    plt.grid(True)
     plt.show()
 
 def create_ellipse():
@@ -68,9 +79,6 @@ def create_ellipse():
     else:
         print("Pilihan tidak valid.")
         return
-
-    print("=== Koordinat Ellipse ===")
-    print_ellipse_coordinates(coordinates)
 
     print("1. Output berupa teks")
     print("2. Output berupa grafik")
