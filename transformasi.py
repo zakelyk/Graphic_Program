@@ -35,7 +35,7 @@ def print_object_coordinates(coordinates):
         print("Koordinat objek {}: {}".format(i+1, coord))
 
 def plot_objects(objects):
-    fig, ax = plt.subplots()
+    # fig, ax = plt.subplots()
     for obj in objects:
         x_coords, y_coords = zip(*obj)
         plt.plot(x_coords, y_coords, marker='o')
