@@ -1,5 +1,4 @@
 import matplotlib_check
-import matplotlib as plt
 from create_ellipse import create_ellipse
 from create_line import create_line
 from transformasi import perform_translation
