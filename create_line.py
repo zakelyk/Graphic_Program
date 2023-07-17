@@ -34,14 +34,19 @@ def draw_line(coordinates):
 
     points = [(x, y)]
 
-    while x < x2:
-        x += 1
-        if p < 0:
-            p += 2 * dy
-        else:
+    if x1 == x2:
+        while y != y2:
             y += 1 if y < y2 else -1
-            p += 2 * (dy - dx)
-        points.append((x, y))
+            points.append((x, y))
+    else:
+        while x < x2:
+            x += 1
+            if p < 0:
+                p += 2 * dy
+            else:
+                y += 1 if y < y2 else -1
+                p += 2 * (dy - dx)
+            points.append((x, y))
 
     x_coords, y_coords = zip(*points)
 
@@ -51,6 +56,7 @@ def draw_line(coordinates):
     plt.title('Garis')
     plt.grid(True, linestyle='--', linewidth=0.5)
     plt.show()
+
 
 def create_line():
     print("=== Membuat Garis ===")
